@@ -74,11 +74,11 @@ def append_special_symbol(word: str) -> str:
     """
     Appends a random special symbol to the given word.
 
-    Parameters:
-    word (str): The word to which a special symbol will be appended.
+    Args:
+        word (str): The word to append a special symbol.
 
     Returns:
-    str: The word with a random special symbol appended to it.
+        str: The word with a random special symbol appended to it.
     """
     special_symbols = "!@#$%^&*"
     return word + choice(list(special_symbols))
@@ -96,11 +96,13 @@ def make_pass_phrase(
     and adds special symbols to a specified number of words. Finally, it prints a passphrase by joining the selected words
     in a random order with dashes.
 
-    Parameters:
-    None
+    Args:
+        number_of_words (int): The number of words to generate the passphrase.
+        number_of_words_to_capitalize (int): The number of words to capitalize.
+        number_of_words_to_special_symbols (int): The number of words to add special symbols.
 
     Returns:
-    str: The generated passphrase.
+        str: The generated passphrase.
     """
     with open(
         Path(__file__).parent.joinpath("dict.txt"), "r", encoding="utf-8"
@@ -140,17 +142,7 @@ def make_pass_phrase(
 
 def main():
     """
-    Generate a passphrase using a dictionary of words.
-
-    Reads a dictionary of words from a file, selects a specified number of words, capitalizes a specified number of words,
-    and adds special symbols to a specified number of words. Finally, it prints a passphrase by joining the selected words
-    in a random order with dashes.
-
-    Parameters:
-    None
-
-    Returns:
-    None
+    The main function of the script.
     """
     parser = argparse.ArgumentParser(
         description="Generate a passphrase using a dictionary of words."
