@@ -27,7 +27,6 @@ SOFTWARE.
 import argparse
 import string
 
-from base64 import b64decode
 from itertools import permutations
 from pathlib import Path
 from random import choice
