@@ -43,17 +43,17 @@ options:
                         (default: 5)
   -c, --capitalize CAPITALIZE
                         The number of words to capitalize.
-                        (default: 4)
+                        (default: 0)
   -s, --special SPECIAL
                         The number of words to add special symbols.
-                        (default: 3)
+                        (default: 0)
 ```
 
 With default parameters:
 
 ```bash
 $ python simple-pass-generator.py phrase
-Northernised-Pillarwise@-Ecklein^-cantabile-Lips$
+sickliness-telos-jasey-macrotone-lolly
 ```
 
 Pass phrase from 3 words, non-capitalized and 2 special symbols:
@@ -61,6 +61,12 @@ Pass phrase from 3 words, non-capitalized and 2 special symbols:
 ```bash
 $ python simple-pass-generator.py phrase -w 3 -c 0 -s 2
 answerer!-enneahedrons$-murumuru
+```
+
+Pass phrase from 5 words, 3 capitalized and 4 special symbols:
+```bash
+$ python simple-pass-generator.py phrase -w 5 -c 3 -s 4
+sparklingly-Campaigner#-Nonperverse*-Abhorrers@-artisanship@
 ```
 
 ### Random String Generation

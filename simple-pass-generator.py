@@ -159,15 +159,15 @@ def main():
         "-c",
         "--capitalize",
         type=int,
-        default=4,
-        help="The number of words to capitalize. (default: 4)",
+        default=0,
+        help="The number of words to capitalize. (default: 0)",
     )
     parser_phrase.add_argument(
         "-s",
         "--special",
         type=int,
-        default=3,
-        help="The number of words to add special symbols. (default: 3)",
+        default=0,
+        help="The number of words to add special symbols. (default: 0)",
     )
 
     parser_string = subparsers.add_parser("string", help="Generate a random string")
