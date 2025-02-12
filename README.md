@@ -1,4 +1,6 @@
-# Simple Password Generator
+# Simple Passphrase and Pass String Generator
+
+[Github repository](https://github.com/alexeygumirov/simple-pass-generator/)
 
 ## Overview
 
