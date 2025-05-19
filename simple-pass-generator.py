@@ -69,24 +69,41 @@ def capitalize_first_letter(word: str) -> str:
     return word[0].upper() + word[1:]
 
 
-def append_special_symbol(word: str) -> str:
+def insert_special_symbol(word: str) -> str:
     """
-    Appends a random special symbol to the given word.
+    Inserts a random special symbol into the given word.
 
     Args:
-        word (str): The word to append a special symbol.
+        word (str): The word to insert a special symbol.
 
     Returns:
-        str: The word with a random special symbol appended to it.
+        str: The word with a random special symbol inserted into it.
     """
-    special_symbols = "!@#$%^&*"
-    return word + choice(list(special_symbols))
+    special_symbols = "!@#$%^&*?"
+    index = choice(range(len(word[1:]))) + 1
+    return word[0] + word[1:index] + choice(list(special_symbols)) + word[index:]
+
+
+def insert_digit(word: str) -> str:
+    """
+    Inserts a random digit into the given word.
+
+    Args:
+        word (str): The word to insert a digit.
+
+    Returns:
+        str: The word with a random digit inserted into it.
+    """
+    digits = string.digits
+    index = choice(range(len(word[1:]))) + 1
+    return word[0] + word[1:index] + choice(list(digits)) + word[index:]
 
 
 def make_pass_phrase(
     number_of_words: int,
     number_of_words_to_capitalize: int,
-    number_of_words_to_special_symbols: int,
+    number_of_special_symbols: int,
+    number_of_digits: int,
 ) -> str:
     """
     Generate a passphrase using a dictionary of words.
@@ -98,7 +115,8 @@ def make_pass_phrase(
     Args:
         number_of_words (int): The number of words to generate the passphrase.
         number_of_words_to_capitalize (int): The number of words to capitalize.
-        number_of_words_to_special_symbols (int): The number of words to add special symbols.
+        number_of_special_symbols (int): The number of special symbols.
+        number_of_digits (int): The number of digits to add.
 
     Returns:
         str: The generated passphrase.
@@ -120,21 +138,24 @@ def make_pass_phrase(
     i = 0
     while i < number_of_words_to_capitalize:
         word = choice(select_words)
+        cap_word = capitalize_first_letter(word)
         if capitalize_first_letter(word) not in capitalized_words:
             select_words.remove(word)
-            select_words.append(capitalize_first_letter(word))
-            capitalized_words.append(capitalize_first_letter(word))
+            select_words.append(cap_word)
+            capitalized_words.append(cap_word)
             i += 1
 
-    words_with_special_symbols = []
-    i = 0
-    while i < number_of_words_to_special_symbols:
+    for i in range(number_of_special_symbols):
         word = choice(select_words)
-        if append_special_symbol(word) not in words_with_special_symbols:
-            select_words.remove(word)
-            select_words.append(append_special_symbol(word))
-            words_with_special_symbols.append(append_special_symbol(word))
-            i += 1
+        spec_symbol_word = insert_special_symbol(word)
+        select_words.remove(word)
+        select_words.append(spec_symbol_word)
+
+    for i in range(number_of_digits):
+        word = choice(select_words)
+        digit_word = insert_digit(word)
+        select_words.remove(word)
+        select_words.append(digit_word)
 
     return "-".join(choice(list(permutations(select_words))))
 
@@ -167,7 +188,14 @@ def main():
         "--special",
         type=int,
         default=0,
-        help="The number of words to add special symbols. (default: 0)",
+        help="The number of special symbols to add. (default: 0)",
+    )
+    parser_phrase.add_argument(
+        "-d",
+        "--digits",
+        type=int,
+        default=0,
+        help="The number of digits to add. (default: 0)",
     )
 
     parser_string = subparsers.add_parser("string", help="Generate a random string")
@@ -202,7 +230,8 @@ def main():
             make_pass_phrase(
                 number_of_words=args.words,
                 number_of_words_to_capitalize=min(args.capitalize, args.words),
-                number_of_words_to_special_symbols=min(args.special, args.words),
+                number_of_special_symbols=args.special,
+                number_of_digits=args.digits,
             )
         )
     if args.command == "string":

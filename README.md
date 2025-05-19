@@ -15,10 +15,11 @@ A Python-based command-line tool for generating secure and customizable password
      - Customize number of words
      - Optional capitalization of words
      - Optional addition of special symbols
+     - Optional addition of digits (numbers)
 
   2. Random String Mode: `simple-pass-generator.py string`
      - Generate random strings with configurable block length and number of blocks
-     - String consits only of lowercase letters and delimiters
+     - String consist only of lowercase letters and delimiters
 
 ## Requirements
 
@@ -37,7 +38,7 @@ A Python-based command-line tool for generating secure and customizable password
 
 ```bash
 usage: simple-pass-generator.py phrase [-h] [-w WORDS] [-c CAPITALIZE]
-                                       [-s SPECIAL]
+                                       [-s SPECIAL] [-d DIGITS]
 
 options:
   -h, --help            show this help message and exit
@@ -47,8 +48,9 @@ options:
                         The number of words to capitalize.
                         (default: 0)
   -s, --special SPECIAL
-                        The number of words to add special symbols.
+                        The number of special symbols to add.
                         (default: 0)
+  -d, --digits DIGITS   The number of digits to add.
 ```
 
 With default parameters:
@@ -58,17 +60,17 @@ $ python simple-pass-generator.py phrase
 sickliness-telos-jasey-macrotone-lolly
 ```
 
-Pass phrase from 3 words, non-capitalized and 2 special symbols:
+Pass phrase from 3 words, non-capitalized, 2 special symbols and 5 digits:
 
 ```bash
-$ python simple-pass-generator.py phrase -w 3 -c 0 -s 2
-answerer!-enneahedrons$-murumuru
+$ python simple-pass-generator.py phrase -w 3 -c 0 -s 2 -d 5
+s#quis7hy-samaro9id-luke28war&mt0h
 ```
 
-Pass phrase from 5 words, 3 capitalized and 4 special symbols:
+Pass phrase from 5 words, 3 capitalized, 4 special symbols and 3 digits:
 ```bash
-$ python simple-pass-generator.py phrase -w 5 -c 3 -s 4
-sparklingly-Campaigner#-Nonperverse*-Abhorrers@-artisanship@
+$ python simple-pass-generator.py phrase -w 5 -c 3 -s 4 -d 3
+Rustless-ken#nith-Vampyre*lla-j5e$*ssa-H26amler
 ```
 
 ### Random String Generation
@@ -92,14 +94,14 @@ With default parameters:
 
 ```bash
 $ python3 simple-pass-generator.py string
-mfnye-rsbmq-ixzdg-zewcs-ipyfy
+snzjq-wfibb-rjfsz-jiegv-vylfr
 ```
 
 String with 3 blocks, 4 characters each and `#` delimiter:
 
 ```bash
 $ python3 simple-pass-generator.py string -b 3 -l 4 -d "#"
-pjwb#wopa#ydpd
+kudm#nvux#unnj
 ```
 
 ## License
