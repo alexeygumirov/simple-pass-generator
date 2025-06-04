@@ -5,6 +5,7 @@
 ## Overview
 
 A Python-based command-line tool for generating secure and customizable passwords or passphrases.
+I wrote this tool so that I can generate pass phrases from my own dictionary file.
 
 ## Features
 
