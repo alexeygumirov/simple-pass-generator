@@ -29,7 +29,7 @@ import string
 
 from itertools import permutations
 from pathlib import Path
-from random import choice
+from random import choice, randint
 
 
 def get_random_string(length: int, delimiter: str = "-", split_step: int = 4) -> str:
@@ -160,6 +160,27 @@ def make_pass_phrase(
     return "-".join(choice(list(permutations(select_words))))
 
 
+def generate_digital_pins(length=6, number_of_pins=1) -> list[str]:
+    """Generate a list of unique digital pins.
+
+    Args:
+        length (int): The length of each pin. Default is 6.
+        number_of_pins (int): The number of unique pins to generate. Default is 6.
+
+    Returns:
+        list[str]: A list containing the generated unique digital pins.
+    """
+    pins = []
+
+    for _ in range(number_of_pins):
+        pin = ""
+        for _ in range(length):
+            pin = pin + str(randint(0, 9))
+        pins.append(pin)
+
+    return pins
+
+
 def main():
     """
     The main function of the script.
@@ -221,6 +242,15 @@ def main():
         help="String block delimiter. (default: '-')",
     )
 
+    parser_pin = subparsers.add_parser("pin", help="Generate a PIN of a given length")
+    parser_pin.add_argument(
+        "-l",
+        "--length",
+        type=int,
+        default=6,
+        help="Length of PIN. (default: 6)",
+    )
+
     args = parser.parse_args()
     if not args.command:
         parser.print_help()
@@ -242,6 +272,9 @@ def main():
                 delimiter=args.delimiter,
             )
         )
+    if args.command == "pin":
+        for pin in generate_digital_pins(length=args.length):
+            print(pin)
 
 
 if __name__ == "__main__":

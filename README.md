@@ -22,6 +22,9 @@ I wrote this tool so that I can generate pass phrases from my own dictionary fil
      - Generate random strings with configurable block length and number of blocks
      - String consist only of lowercase letters and delimiters
 
+  3. Digital PIN mode: `simple-pass-generator.py pin`
+    - Generate PIN code of a given length
+
 ## Requirements
 
 - Python 3.x
@@ -103,6 +106,31 @@ String with 3 blocks, 4 characters each and `#` delimiter:
 ```bash
 $ python3 simple-pass-generator.py string -b 3 -l 4 -d "#"
 kudm#nvux#unnj
+```
+
+### PIN Generation
+
+```bash
+
+usage: mkpass pin [-h] [-l LENGTH]
+
+options:
+  -h, --help           show this help message and exit
+  -l, --length LENGTH  Length of PIN. (default: 6)
+```
+
+With default parameters:
+
+```bash
+$ python3 simple-pass-generator.py pin
+249068
+```
+
+PIN of 10 digits:
+
+```bash
+$ python3 simple-pass-generator.py pin -l10
+1688740036
 ```
 
 ## License
