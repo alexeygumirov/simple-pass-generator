@@ -1,3 +1,13 @@
+# 👋 THIS REPOSITORY HAS MOVED! 👋
+
+**This repository is no longer actively maintained on GitHub.**
+
+Please update your bookmarks and remotes to the new home on Codeberg:
+
+➡️ **[https://codeberg.org/alexeygumirov/simple-pass-generator](https://codeberg.org/alexeygumirov/simple-pass-generator)** ⬅️
+
+Thank you for your understanding!
+
 # Simple Passphrase and Pass String Generator
 
 [Github repository](https://github.com/alexeygumirov/simple-pass-generator/)
